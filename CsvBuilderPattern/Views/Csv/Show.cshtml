@@ -1,0 +1,41 @@
+﻿@model IEnumerable<CsvBuilderPattern.Models.ErrorRecord>
+
+@{
+    ViewBag.Title = "Show";
+}
+
+<h2>Show Data</h2>
+
+
+
+<p>
+    <a href="@Url.Action("DownloadCsv", "Csv")">Download CSV</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Error Code</th>
+            <th>Error Message</th>
+            <th>Transaction Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.errorCode</td>
+                <td>@item.errorMessage</td>
+                <td>@item.TransactionDate.ToString("MM/dd/yyyy HH:mm:ss")</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Csv", new { errCode = item.errorCode }, null)
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
